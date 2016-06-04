@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_margin="5dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp"
+        card_view:cardUseCompatPadding="true"
+        android:onClick="clickCard">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/purchase_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/purchase_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="item name"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <RatingBar
+                    android:id="@+id/purchase_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/purchase_name"
+                    android:layout_gravity="center_horizontal"
+                    android:progressTint="#f29736"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:rating="1" />
+
+                <TextView
+                    android:id="@+id/purchase_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/purchase_rating"
+                    android:text="item name"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <Button
+                    android:id="@+id/purchase_buy_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/purchase_description"
+                    android:text="Buy Now"
+                    android:textColor="#FFFFFF"
+                    android:background="#4b4"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
