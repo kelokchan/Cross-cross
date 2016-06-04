@@ -9,6 +9,16 @@ public class Product {
     String description;
     double price;
     int image;
+    int shopLogo;
+
+    public Product(String name, double rating, String description, double price, int image, int shopLogo) {
+        this.name = name;
+        this.rating = rating;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+        this.shopLogo = shopLogo;
+    }
 
     public String getName() {
         return name;
@@ -48,5 +58,13 @@ public class Product {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public int getShopLogo() {
+        return shopLogo;
+    }
+
+    public void setShopLogo(int shopLogo) {
+        this.shopLogo = shopLogo;
     }
 }

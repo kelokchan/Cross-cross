@@ -19,6 +19,14 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/purchase_shoplogo"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"/>
+
+            <ImageView
                 android:id="@+id/purchase_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

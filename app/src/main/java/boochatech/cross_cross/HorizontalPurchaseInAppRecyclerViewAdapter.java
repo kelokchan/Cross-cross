@@ -56,9 +56,14 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.imageview_productImg.setBackgroundResource(products.get(position).getImage());
-        holder.textview_productName.setText(products.get(position).getName());
-        holder.textview_description.setText(String.format("%1$ - MYR%2$",products.get(position).getDescription(),products.get(position).getPrice()));
-        holder.ratingBar.setRating((float)products.get(position).getRating());
+        if(!holder.textview_productName.equals(""))holder.textview_productName.setText(products.get(position).getName());
+        else{
+            holder.textview_productName.setVisibility(View.GONE);
+            holder.buyButton.setVisibility(View.GONE);
+        }
+        holder.textview_description.setText(products.get(position).getDescription());
+        if(products.get(position).getRating()!=-1)holder.ratingBar.setRating((float)products.get(position).getRating());
+        else holder.ratingBar.setVisibility(View.GONE);
         holder.buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

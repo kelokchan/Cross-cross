@@ -3,12 +3,7 @@ package boochatech.cross_cross;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,11 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-
 import boochatech.cross_cross.helper.SimpleItemTouchHelperCallback;
-import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,10 +38,10 @@ public class MainActivity extends AppCompatActivity
         SwipeableRecyclerViewAdapter sectionAdapter = new SwipeableRecyclerViewAdapter();
 
         // Instantiate section with tags
-        todaySection = new ToDoListSection(ToDoListSection.TODAY);
-        tomorrowSection = new ToDoListSection(ToDoListSection.TOMORROW);
-        sixJuneSection = new ToDoListSection(ToDoListSection.SIX_JUNE);
-        tenJuneSection = new ToDoListSection(ToDoListSection.TEN_JUNE);
+        todaySection = new ToDoListSection(this, ToDoListSection.TODAY);
+        tomorrowSection = new ToDoListSection(this, ToDoListSection.TOMORROW);
+        sixJuneSection = new ToDoListSection(this, ToDoListSection.SIX_JUNE);
+        tenJuneSection = new ToDoListSection(this, ToDoListSection.TEN_JUNE);
 
         // Add your Sections
         sectionAdapter.addSection(todaySection);
@@ -73,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, test.class);
+                Intent intent = new Intent(MainActivity.this, AddToDoActivity.class);
                 startActivity(intent);
             }
         });

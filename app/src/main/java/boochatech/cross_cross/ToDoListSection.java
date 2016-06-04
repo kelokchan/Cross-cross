@@ -1,23 +1,27 @@
 package boochatech.cross_cross;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import boochatech.cross_cross.Model.Product;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
 /**
  * Created by Loh on 4/6/2016.
  */
 public class ToDoListSection extends StatelessSection {
+    Context mContext;
 
     public static List<String> myList = Arrays.asList("Item1", "Item2", "Item3");
     final static int TODAY = 0;
@@ -29,8 +33,9 @@ public class ToDoListSection extends StatelessSection {
         super(R.layout.item_card_header, R.layout.item_card);
     }
 
-    public ToDoListSection(int i) {
+    public ToDoListSection(Context c, int i) {
         super(R.layout.item_card_header, R.layout.item_card);
+        mContext = c;
     }
 
     @Override
@@ -57,6 +62,11 @@ public class ToDoListSection extends StatelessSection {
         itemHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+                itemHolder.recyclerView.setLayoutManager(mLayoutManager);
+                itemHolder.recyclerView.setItemAnimator(new DefaultItemAnimator());
+                itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
                 itemHolder.expandableLayout.toggle();
             }
         });
@@ -75,6 +85,7 @@ public class ToDoListSection extends StatelessSection {
         private final View colorBar;
         CardView card;
         ExpandableRelativeLayout expandableLayout;
+        RecyclerView recyclerView;
 
         public MyItemViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +94,7 @@ public class ToDoListSection extends StatelessSection {
             colorBar = (View) itemView.findViewById(R.id.card_bar);
             card = (CardView) itemView.findViewById(R.id.card);
             expandableLayout = (ExpandableRelativeLayout) itemView.findViewById(R.id.expandableLayout1);
+            recyclerView = (RecyclerView)itemView.findViewById(R.id.action_suggestion_list);
         }
     }
 
@@ -99,5 +111,17 @@ public class ToDoListSection extends StatelessSection {
         }
     }
 
+    public List<Product> getSuggestions(int i){
+        List<Product> suggestions = new ArrayList<>();
+        switch (i){
+            case 0:
+                suggestions.add(new Product("Weekly's Lovely Bouquet", 4, String.format("%1$s - MYR%2$s","Regular",58), 58, R.drawable.flower1, R.drawable.fifty_gram));
+                suggestions.add(new Product("Happy Bunch - Lily", 4, String.format("%1$s - MYR%2$s","Regular",42), 42, R.drawable.flower2, R.drawable.happy_bunch));
+                suggestions.add(new Product("", -1, "Search the nearest flower shop", -1, R.drawable.google, -1));
+                return suggestions;
+            default:
+                return suggestions;
+        }
+    }
 
 }
