@@ -1,8 +1,13 @@
 package boochatech.cross_cross;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,10 +50,17 @@ public class ToDoListSection extends StatelessSection {
 
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
-        MyItemViewHolder itemHolder = (MyItemViewHolder) holder;
+        final MyItemViewHolder itemHolder = (MyItemViewHolder) holder;
 
         // bind your view here
         itemHolder.tvItem.setText(myList.get(position));
+        itemHolder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemHolder.expandableLayout.toggle();
+            }
+        });
+
     }
 
     @Override
@@ -61,12 +73,16 @@ public class ToDoListSection extends StatelessSection {
 
         private final TextView tvItem;
         private final View colorBar;
+        CardView card;
+        ExpandableRelativeLayout expandableLayout;
 
         public MyItemViewHolder(View itemView) {
             super(itemView);
 
             tvItem = (TextView) itemView.findViewById(R.id.card_title);
             colorBar = (View) itemView.findViewById(R.id.card_bar);
+            card = (CardView) itemView.findViewById(R.id.card);
+            expandableLayout = (ExpandableRelativeLayout) itemView.findViewById(R.id.expandableLayout1);
         }
     }
 
@@ -74,10 +90,12 @@ public class ToDoListSection extends StatelessSection {
 
         private final TextView tvTitle;
 
+
         public HeaderViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
+
         }
     }
 
