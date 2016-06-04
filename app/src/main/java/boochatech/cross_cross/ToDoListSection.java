@@ -12,11 +12,19 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 /**
  * Created by Loh on 4/6/2016.
  */
-public class ToDoListAdapter extends StatelessSection {
+public class ToDoListSection extends StatelessSection {
 
-    List<String> myList = Arrays.asList("Item1", "Item2", "Item3");
+    public static List<String> myList = Arrays.asList("Item1", "Item2", "Item3");
+    final static int TODAY = 0;
+    final static int TOMORROW = 1;
+    final static int SIX_JUNE = 2;
+    final static int TEN_JUNE = 3;
 
-    public ToDoListAdapter() {
+    public ToDoListSection() {
+        super(R.layout.item_card_header, R.layout.item_card);
+    }
+
+    public ToDoListSection(int i) {
         super(R.layout.item_card_header, R.layout.item_card);
     }
 
@@ -46,7 +54,7 @@ public class ToDoListAdapter extends StatelessSection {
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
         HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
-        headerHolder.tvTitle.setText("Lawrence");
+        headerHolder.tvTitle.setText("Today");
     }
 
     class MyItemViewHolder extends RecyclerView.ViewHolder {

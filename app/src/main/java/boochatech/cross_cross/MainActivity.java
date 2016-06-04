@@ -1,6 +1,5 @@
 package boochatech.cross_cross;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,17 +11,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.molpay.molpayxdk.MOLPayActivity;
-
-import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
+import boochatech.cross_cross.helper.SimpleItemTouchHelperCallback;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ToDoListSection todaySection;
+    ToDoListSection tomorrowSection;
+    ToDoListSection sixJuneSection;
+    ToDoListSection tenJuneSection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +35,29 @@ public class MainActivity extends AppCompatActivity
 
 
         // Create an instance of SectionedRecyclerViewAdapter
-        SectionedRecyclerViewAdapter sectionAdapter = new SectionedRecyclerViewAdapter();
+        SwipeableRecyclerViewAdapter sectionAdapter = new SwipeableRecyclerViewAdapter();
+
+        // Instantiate section with tags
+        todaySection = new ToDoListSection(ToDoListSection.TODAY);
+        tomorrowSection = new ToDoListSection(ToDoListSection.TOMORROW);
+        sixJuneSection = new ToDoListSection(ToDoListSection.SIX_JUNE);
+        tenJuneSection = new ToDoListSection(ToDoListSection.TEN_JUNE);
 
         // Add your Sections
-        sectionAdapter.addSection(new ToDoListAdapter());
+        sectionAdapter.addSection(todaySection);
+        sectionAdapter.addSection(tomorrowSection);
+        sectionAdapter.addSection(sixJuneSection);
+        sectionAdapter.addSection(tenJuneSection);
 
         // Set up your RecyclerView with the SectionedRecyclerViewAdapter
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.todo_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(sectionAdapter);
 
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(sectionAdapter, recyclerView);
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(recyclerView);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -96,16 +111,16 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
-            Log.d(MOLPayActivity.MOLPAY, "MOLPay result = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
-        }
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+//    {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
+//            Log.d(MOLPayActivity.MOLPAY, "MOLPay result = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
+//        }
+//
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

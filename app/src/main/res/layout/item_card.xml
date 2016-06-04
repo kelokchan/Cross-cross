@@ -51,7 +51,7 @@
     <View
         android:layout_width="10dp"
         android:layout_height="match_parent"
-        android:background="#ff0000"
+        android:background="#e57373"
         android:orientation="vertical"
         android:id="@+id/card_bar"
         android:layout_gravity="left"
