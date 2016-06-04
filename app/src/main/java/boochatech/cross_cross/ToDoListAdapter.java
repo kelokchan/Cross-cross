@@ -17,7 +17,7 @@ public class ToDoListAdapter extends StatelessSection {
     List<String> myList = Arrays.asList("Item1", "Item2", "Item3");
 
     public ToDoListAdapter() {
-        super(R.layout.to_list_section_header, R.layout.to_list_section_item);
+        super(R.layout.item_card_header, R.layout.item_card);
     }
 
     @Override
@@ -52,12 +52,13 @@ public class ToDoListAdapter extends StatelessSection {
     class MyItemViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvItem;
+        private final View colorBar;
 
         public MyItemViewHolder(View itemView) {
             super(itemView);
 
-            tvItem = (TextView) itemView.findViewById(R.id.tvDate);
-
+            tvItem = (TextView) itemView.findViewById(R.id.card_title);
+            colorBar = (View) itemView.findViewById(R.id.card_bar);
         }
     }
 

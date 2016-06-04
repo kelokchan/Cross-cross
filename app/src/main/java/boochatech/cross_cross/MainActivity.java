@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity
 
         // Add your Sections
         sectionAdapter.addSection(new ToDoListAdapter());
-        sectionAdapter.addSection(new ToDoListAdapter());
 
         // Set up your RecyclerView with the SectionedRecyclerViewAdapter
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.todo_list);
