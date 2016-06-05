@@ -12,6 +12,7 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import boochatech.cross_cross.Model.Product;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -56,8 +57,13 @@ public class ToDoListSection extends StatelessSection {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyItemViewHolder itemHolder = (MyItemViewHolder) holder;
-
         final String name = taskList.get(position).getName();
+
+        if (name.toLowerCase().startsWith("flow"))
+            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
+        else if (name.toLowerCase().startsWith("mov"))
+            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(1)));
+
         // bind your view here
         itemHolder.tvItem.setText(name);
         itemHolder.card.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +80,8 @@ public class ToDoListSection extends StatelessSection {
         });
         itemHolder.cardImage.setImageResource(taskList.get(position).getShopLogo());
         colors = mContext.getResources().getIntArray(R.array.color_list);
-        itemHolder.colorBar.setBackgroundColor(colors[position]);
+        int colorIndex = new Random().nextInt(colors.length);
+        itemHolder.colorBar.setBackgroundColor(colors[colorIndex]);
 
     }
 
@@ -105,8 +112,6 @@ public class ToDoListSection extends StatelessSection {
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
-
         }
     }
 
@@ -132,6 +137,9 @@ public class ToDoListSection extends StatelessSection {
                 //suggestions.add(new Product("", -1, "Search the nearest flower shop", -1, R.drawable.google, -1));
                 return suggestions;
             default:
+                suggestions.add(new Product("X-men Apocalypse", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_xmen, R.drawable.movie_xmen));
+                suggestions.add(new Product("Me Before You", 4, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_mebeforeu, R.drawable.movie_mebeforeu));
+                suggestions.add(new Product("Bad neighbours 2", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_bad, R.drawable.movie_bad));
                 return suggestions;
         }
     }
