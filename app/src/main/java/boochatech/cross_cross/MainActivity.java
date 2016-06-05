@@ -12,9 +12,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.molpay.molpayxdk.MOLPayActivity;
 
 import boochatech.cross_cross.helper.SimpleItemTouchHelperCallback;
 
@@ -111,16 +114,16 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-//    {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
-//            Log.d(MOLPayActivity.MOLPAY, "MOLPay result = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
-//        }
-//
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
+            Log.d(MOLPayActivity.MOLPAY, "MOLPay result = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
+        }
+
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

@@ -31,6 +31,7 @@ public class ToDoListSection extends StatelessSection {
 
     public ToDoListSection() {
         super(R.layout.item_card_header, R.layout.item_card);
+
     }
 
     public ToDoListSection(Context c, int i) {
@@ -63,6 +64,14 @@ public class ToDoListSection extends StatelessSection {
             @Override
             public void onClick(View v) {
                 itemHolder.expandableLayout.toggle();
+
+                if(itemHolder.expandableLayout.isExpanded()){
+                    itemHolder.expandableLayout.collapse();
+                    //itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
+                }else{
+                    itemHolder.expandableLayout.expand();
+                    itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
+                }
             }
         });
 
@@ -94,6 +103,7 @@ public class ToDoListSection extends StatelessSection {
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
+
         }
     }
 
@@ -116,7 +126,7 @@ public class ToDoListSection extends StatelessSection {
             case 0:
                 suggestions.add(new Product("Weekly's Lovely Bouquet", 4, String.format("%1$s - MYR%2$s","Regular",58), 58, R.drawable.flower1, R.drawable.fifty_gram));
                 suggestions.add(new Product("Happy Bunch - Lily", 4, String.format("%1$s - MYR%2$s","Regular",42), 42, R.drawable.flower2, R.drawable.happy_bunch));
-                //suggestions.add(new Product("", -1, "Search the nearest flower shop", -1, R.drawable.google, -1));
+                suggestions.add(new Product("", -1, "Search the nearest flower shop", -1, R.drawable.google, -1));
                 return suggestions;
             default:
                 return suggestions;
