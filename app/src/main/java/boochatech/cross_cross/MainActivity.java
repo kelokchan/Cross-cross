@@ -1,5 +1,6 @@
 package boochatech.cross_cross;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,10 +24,14 @@ import boochatech.cross_cross.Model.Product;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SwipeableRecyclerViewAdapter sectionAdapter;
+
     ToDoListSection todaySection;
     ToDoListSection tomorrowSection;
     ToDoListSection sixJuneSection;
     ToDoListSection tenJuneSection;
+
+    List<Product> todayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +42,10 @@ public class MainActivity extends AppCompatActivity
 
 
         // Create an instance of SectionedRecyclerViewAdapter
-        SwipeableRecyclerViewAdapter sectionAdapter = new SwipeableRecyclerViewAdapter();
+        sectionAdapter = new SwipeableRecyclerViewAdapter();
 
 
-        List<Product> todayList = new ArrayList<>();
+        todayList = new ArrayList<>();
         todayList.add(new Product("Flower for Babe", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, 0));
 
         // Instantiate section with tags
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddToDoActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -117,7 +122,18 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                String result=data.getStringExtra("result");
+                todayList.add(0, new Product(result, 5.0, "movie", 22.00, R.drawable.movie_xmen, 0));
+                sectionAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data)
 //    {
 //        super.onActivityResult(requestCode, resultCode, data);

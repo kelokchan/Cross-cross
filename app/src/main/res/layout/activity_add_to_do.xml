@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="boochatech.cross_cross.AddToDoActivity">
 
@@ -17,17 +15,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="Your Task"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
             android:id="@+id/card_editText"
-            android:layout_height="50dp">
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:hint="Title"
+                android:id="@+id/editTxt"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
 
         </android.support.v7.widget.CardView>
 
@@ -35,37 +42,39 @@
             android:id="@+id/color_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="horizontal"
-            android:layout_below="@+id/card_editText"/>
+            android:layout_below="@+id/card_editText" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Reminder"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="10dp"
-            android:textSize="20sp"/>
+            android:text="Set Reminder"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="5dp"
-            android:textSize="20sp"
-            android:text="Date :_ / _ / _     Time :_ / _ /"/>
+            android:text="Date :_ / _ / _     Time :_ / _ /"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Location "
+            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="30dp"
-            android:textSize="20sp"/>
+            android:text="Set Location "
+            android:textSize="20sp" />
 
         <EditText
-            android:lines="10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Location...."/>
-
+            android:hint="Enter Location...."
+            android:lines="10"
+            android:paddingLeft="@dimen/activity_horizontal_margin" />
 
 
     </LinearLayout>
@@ -77,6 +86,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_24dp" />
+        android:src="@drawable/ic_done_white_24dp" />
 
 </RelativeLayout>
