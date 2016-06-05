@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import boochatech.cross_cross.Model.Product;
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
 /**
@@ -28,10 +29,6 @@ public class ToDoListSection extends StatelessSection {
     final static int TOMORROW = 1;
     final static int SIX_JUNE = 2;
     final static int TEN_JUNE = 3;
-
-    public ToDoListSection() {
-        super(R.layout.item_card_header, R.layout.item_card);
-    }
 
     public ToDoListSection(Context c, int i, String header, List<Product> taskList) {
         super(R.layout.item_card_header, R.layout.item_card);
@@ -71,6 +68,8 @@ public class ToDoListSection extends StatelessSection {
                 }
             }
         });
+        itemHolder.cardImage.setImageResource(taskList.get(position).getShopLogo());
+        itemHolder.colorBar.setBackgroundColor(mContext.getResources().getColor(R.color.color5));
 
     }
 
@@ -86,6 +85,7 @@ public class ToDoListSection extends StatelessSection {
         private final View colorBar;
         CardView card;
         ExpandableRelativeLayout expandableLayout;
+        CircleImageView cardImage;
         RecyclerView recyclerView;
 
         public MyItemViewHolder(View itemView) {
@@ -95,6 +95,8 @@ public class ToDoListSection extends StatelessSection {
             colorBar = (View) itemView.findViewById(R.id.card_bar);
             card = (CardView) itemView.findViewById(R.id.card);
             recyclerView = (RecyclerView) itemView.findViewById(R.id.action_suggestion_list);
+            cardImage = (CircleImageView) itemView.findViewById(R.id.card_image);
+
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());

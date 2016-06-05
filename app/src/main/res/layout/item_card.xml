@@ -34,15 +34,15 @@
                 android:paddingRight="0dp"
                 android:paddingTop="5dp">
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:src="@mipmap/ic_launcher" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:src="@android:drawable/ic_input_delete"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#BEBEBE"/>
 
                 <TextView
                     android:id="@+id/card_title"
@@ -50,8 +50,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_toEndOf="@+id/imageView2"
-                    android:layout_toRightOf="@+id/imageView2"
+                    android:layout_toEndOf="@+id/card_image"
+                    android:layout_toRightOf="@+id/card_image"
                     android:text="Large Text"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 

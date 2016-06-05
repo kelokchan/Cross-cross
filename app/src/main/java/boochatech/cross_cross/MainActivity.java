@@ -45,14 +45,30 @@ public class MainActivity extends AppCompatActivity
         sectionAdapter = new SwipeableRecyclerViewAdapter();
 
 
+        List<Product> todayList = new ArrayList<>();
+        todayList.add(new Product("Flower for Babe", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.groceries));
+        todayList.add(new Product("Gym with Desmond", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.gym));
+        List<Product> tomorrowList = new ArrayList<>();
+
+        tomorrowList.add(new Product("Send Mom to Airport", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.flight));
+        tomorrowList.add(new Product("Assignment Due", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.appointment));
+
+        List<Product> JunethList = new ArrayList<>();
+        JunethList.add(new Product("Badminton with T2-SE", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.exercise));
+        JunethList.add(new Product("Buy bus ticket", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.ticket));
+        JunethList.add(new Product("Appointment with Miss Hema", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.appointment));
+
+        List<Product> JuneList = new ArrayList<>();
+        JuneList.add(new Product("Dinner with Kelok", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.restaurant));
+        JuneList.add(new Product("Body Checking", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.health));
         todayList = new ArrayList<>();
         todayList.add(new Product("Flower for Babe", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, 0));
 
         // Instantiate section with tags
         todaySection = new ToDoListSection(this, ToDoListSection.TODAY, "Today", todayList);
-        tomorrowSection = new ToDoListSection(this, ToDoListSection.TOMORROW, "Tomorrow", todayList);
-        sixJuneSection = new ToDoListSection(this, ToDoListSection.SIX_JUNE, "6th June, Monday", todayList);
-        tenJuneSection = new ToDoListSection(this, ToDoListSection.TEN_JUNE, "10th June, Friday", todayList);
+        tomorrowSection = new ToDoListSection(this, ToDoListSection.TOMORROW, "Tomorrow", tomorrowList);
+        sixJuneSection = new ToDoListSection(this, ToDoListSection.SIX_JUNE, "6th June, Monday", JunethList);
+        tenJuneSection = new ToDoListSection(this, ToDoListSection.TEN_JUNE, "10th June, Friday", JuneList);
 
         // Add your Sections
         sectionAdapter.addSection(todaySection);
