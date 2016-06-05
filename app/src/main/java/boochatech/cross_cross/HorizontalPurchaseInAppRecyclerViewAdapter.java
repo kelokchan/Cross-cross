@@ -2,6 +2,7 @@ package boochatech.cross_cross;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -81,9 +82,19 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
                 @Override
                 public void onClick(View v) {
                     switch(position){
-                        case 2:
-                            mContext.startActivity(new Intent("com.waze"));
-                            break;
+                        case 1:
+                            /*PackageManager manager = null;
+                            Intent i = manager.getLaunchIntentForPackage("com.google.android.apps.maps");
+                            if (i != null) {
+                                i.addCategory(Intent.CATEGORY_LAUNCHER);
+                                mContext.startActivity(i);
+                            }*/
+                            String uri = "http://maps.google.com/maps?q=loc:"+10+","+10+" ("+"KLIA 2"+")";
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                            intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+                            intent.setData(Uri.parse(uri));
+                            mContext.startActivity(intent);
                     }
                 }
             });

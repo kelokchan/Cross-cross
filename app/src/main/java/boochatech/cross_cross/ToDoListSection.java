@@ -143,11 +143,11 @@ public class ToDoListSection extends StatelessSection {
                 return suggestions;
             case 1:
                 suggestions.add(new Product("Call a Grab to destination", -1, "", -1, R.drawable.grabcar, -1));
-                suggestions.add(new Product("Launch Waze", -1, "", -1, R.drawable.waze, -1));
+                suggestions.add(new Product("Launch Maps", -1, "", -1, R.drawable.waze, -1));
                 suggestions.add(new Product("Online check-in", -1, "", -1,R.drawable.airasia, -1));
                 return suggestions;
             default:
-                suggestions.add(new Product("X-men Apocalypse", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_xmen, R.drawable.movie_xmen));
+                suggestions.add(new Product("X-men", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_xmen, R.drawable.movie_xmen));
                 suggestions.add(new Product("Me Before You", 4, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_mebeforeu, R.drawable.movie_mebeforeu));
                 suggestions.add(new Product("Bad neighbours 2", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_bad, R.drawable.movie_bad));
                 return suggestions;
