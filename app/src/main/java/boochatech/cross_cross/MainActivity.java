@@ -11,12 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import boochatech.cross_cross.helper.SimpleItemTouchHelperCallback;
+import java.util.ArrayList;
+import java.util.List;
+
+import boochatech.cross_cross.Model.Product;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,11 +39,15 @@ public class MainActivity extends AppCompatActivity
         // Create an instance of SectionedRecyclerViewAdapter
         SwipeableRecyclerViewAdapter sectionAdapter = new SwipeableRecyclerViewAdapter();
 
+
+        List<Product> todayList = new ArrayList<>();
+        todayList.add(new Product("Flower for Babe", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, 0));
+
         // Instantiate section with tags
-        todaySection = new ToDoListSection(this, ToDoListSection.TODAY);
-        tomorrowSection = new ToDoListSection(this, ToDoListSection.TOMORROW);
-        sixJuneSection = new ToDoListSection(this, ToDoListSection.SIX_JUNE);
-        tenJuneSection = new ToDoListSection(this, ToDoListSection.TEN_JUNE);
+        todaySection = new ToDoListSection(this, ToDoListSection.TODAY, "Today", todayList);
+        tomorrowSection = new ToDoListSection(this, ToDoListSection.TOMORROW, "Tomorrow", todayList);
+        sixJuneSection = new ToDoListSection(this, ToDoListSection.SIX_JUNE, "6th June, Monday", todayList);
+        tenJuneSection = new ToDoListSection(this, ToDoListSection.TEN_JUNE, "10th June, Friday", todayList);
 
         // Add your Sections
         sectionAdapter.addSection(todaySection);
@@ -55,9 +61,9 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(sectionAdapter);
 
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(sectionAdapter, recyclerView);
-        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(recyclerView);
+//        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(sectionAdapter, recyclerView);
+//        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(callback);
+//        mItemTouchHelper.attachToRecyclerView(recyclerView);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

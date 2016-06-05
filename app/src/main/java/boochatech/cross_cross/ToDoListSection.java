@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import boochatech.cross_cross.Model.Product;
@@ -21,9 +20,10 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
  * Created by Loh on 4/6/2016.
  */
 public class ToDoListSection extends StatelessSection {
+    private List<Product> taskList;
     Context mContext;
 
-    public static List<String> myList = Arrays.asList("Item1", "Item2", "Item3");
+    public String header;
     final static int TODAY = 0;
     final static int TOMORROW = 1;
     final static int SIX_JUNE = 2;
@@ -33,14 +33,16 @@ public class ToDoListSection extends StatelessSection {
         super(R.layout.item_card_header, R.layout.item_card);
     }
 
-    public ToDoListSection(Context c, int i) {
+    public ToDoListSection(Context c, int i, String header, List<Product> taskList) {
         super(R.layout.item_card_header, R.layout.item_card);
         mContext = c;
+        this.header = header;
+        this.taskList = taskList;
     }
 
     @Override
     public int getContentItemsTotal() {
-        return myList.size();
+        return taskList.size();
     }
 
     @Override
@@ -58,11 +60,15 @@ public class ToDoListSection extends StatelessSection {
         final MyItemViewHolder itemHolder = (MyItemViewHolder) holder;
 
         // bind your view here
-        itemHolder.tvItem.setText(myList.get(position));
+        itemHolder.tvItem.setText(taskList.get(position).getName());
         itemHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemHolder.expandableLayout.toggle();
+                if(itemHolder.recyclerView.getVisibility() == View.VISIBLE) {
+                    itemHolder.recyclerView.setVisibility(View.GONE);
+                }else{
+                    itemHolder.recyclerView.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -71,7 +77,7 @@ public class ToDoListSection extends StatelessSection {
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
         HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
-        headerHolder.tvTitle.setText("Today");
+        headerHolder.tvTitle.setText(header);
     }
 
     class MyItemViewHolder extends RecyclerView.ViewHolder {
@@ -88,12 +94,12 @@ public class ToDoListSection extends StatelessSection {
             tvItem = (TextView) itemView.findViewById(R.id.card_title);
             colorBar = (View) itemView.findViewById(R.id.card_bar);
             card = (CardView) itemView.findViewById(R.id.card);
-            expandableLayout = (ExpandableRelativeLayout) itemView.findViewById(R.id.expandableLayout1);
-            recyclerView = (RecyclerView)itemView.findViewById(R.id.action_suggestion_list);
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.action_suggestion_list);
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
+
         }
     }
 
@@ -110,12 +116,12 @@ public class ToDoListSection extends StatelessSection {
         }
     }
 
-    public List<Product> getSuggestions(int i){
+    public List<Product> getSuggestions(int i) {
         List<Product> suggestions = new ArrayList<>();
-        switch (i){
+        switch (i) {
             case 0:
-                suggestions.add(new Product("Weekly's Lovely Bouquet", 4, String.format("%1$s - MYR%2$s","Regular",58), 58, R.drawable.flower1, R.drawable.fifty_gram));
-                suggestions.add(new Product("Happy Bunch - Lily", 4, String.format("%1$s - MYR%2$s","Regular",42), 42, R.drawable.flower2, R.drawable.happy_bunch));
+                suggestions.add(new Product("Weekly's Lovely Bouquet", 4, String.format("%1$s - MYR%2$s", "Regular", 58), 58, R.drawable.flower1, R.drawable.fifty_gram));
+                suggestions.add(new Product("Happy Bunch - Lily", 4, String.format("%1$s - MYR%2$s", "Regular", 42), 42, R.drawable.flower2, R.drawable.happy_bunch));
                 //suggestions.add(new Product("", -1, "Search the nearest flower shop", -1, R.drawable.google, -1));
                 return suggestions;
             default:
