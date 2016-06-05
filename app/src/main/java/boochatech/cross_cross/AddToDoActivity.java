@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 
 import butterknife.Bind;
@@ -29,6 +31,25 @@ public class AddToDoActivity extends AppCompatActivity {
         recyclerView.setAdapter(new HorizontalColorPicker(this));
 
         ButterKnife.bind(this);
+        editText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (editText.getRight() - editText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        Intent intent = new Intent(AddToDoActivity.this, VoiceRecognizerAvtitiy.class);
+                        startActivity(intent);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @OnClick(R.id.fab)

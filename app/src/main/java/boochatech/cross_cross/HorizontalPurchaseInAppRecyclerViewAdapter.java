@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.molpay.molpayxdk.MOLPayActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (isAction) {
-            holder.actionIcon.setBackgroundResource(products.get(position).getImage());
+            Picasso.with(mContext).load(products.get(position).getImage()).into(holder.actionIcon);
             holder.actionText.setText(products.get(position).getName());
 
             holder.actionCardView.setOnClickListener(new View.OnClickListener() {
