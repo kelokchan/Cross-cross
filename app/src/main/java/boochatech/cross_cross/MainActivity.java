@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.molpay.molpayxdk.MOLPayActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +144,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
+            Log.d(MOLPayActivity.MOLPAY, "MOLPay result = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
+        } else if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 String result = data.getStringExtra("result");
                 todayList.add(0, new Product(result, 5.0, "movie", 22.00, R.drawable.movie_xmen, R.drawable.ticket));

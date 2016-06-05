@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import boochatech.cross_cross.Model.Action;
 import boochatech.cross_cross.Model.Product;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
@@ -23,6 +24,7 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
  */
 public class ToDoListSection extends StatelessSection {
     private List<Product> taskList;
+    private List<Action> actions;
     Context mContext;
     int[] colors;
 
@@ -60,10 +62,11 @@ public class ToDoListSection extends StatelessSection {
         final String name = taskList.get(position).getName();
 
         if (name.toLowerCase().startsWith("flow"))
-            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0)));
+            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0),false));
         else if (name.toLowerCase().startsWith("mov"))
-            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(1)));
-
+            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(2),false));
+        else if (name.toLowerCase().startsWith("send"))
+            itemHolder.recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(1),true));
         // bind your view here
         itemHolder.tvItem.setText(name);
         itemHolder.card.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +115,8 @@ public class ToDoListSection extends StatelessSection {
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(new HorizontalPurchaseInAppRecyclerViewAdapter(mContext, getSuggestions(0), false));
+
         }
     }
 
@@ -134,8 +139,13 @@ public class ToDoListSection extends StatelessSection {
             case 0:
                 suggestions.add(new Product("Weekly's Lovely Bouquet", 4, String.format("%1$s - MYR%2$s", "Regular", 58), 58, R.drawable.flower1, R.drawable.fifty_gram));
                 suggestions.add(new Product("Happy Bunch - Lily", 4, String.format("%1$s - MYR%2$s", "Regular", 42), 42, R.drawable.flower2, R.drawable.happy_bunch));
-                //suggestions.add(new Product("", -1, "Search the nearest flower shop", -1, R.drawable.google, -1));
+                suggestions.add(new Product("", -1, "", -1, R.drawable.google_card, -1));
                 return suggestions;
+            case 1:
+                suggestions.add(new Product("Call a Grab to destination", -1, "", -1, R.drawable.grabcar, -1));
+                suggestions.add(new Product("Launch Waze", -1, "", -1, R.drawable.waze, -1));
+                suggestions.add(new Product("Online check-in", -1, "", -1,R.drawable.airasia, -1));
+
             default:
                 suggestions.add(new Product("X-men Apocalypse", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_xmen, R.drawable.movie_xmen));
                 suggestions.add(new Product("Me Before You", 4, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_mebeforeu, R.drawable.movie_mebeforeu));
