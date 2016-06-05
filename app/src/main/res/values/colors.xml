@@ -3,4 +3,25 @@
     <color name="colorPrimary">#fff</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#424242</color>
+
+    <color name="color1">#E08B9E</color>
+    <color name="color2">#F29B88</color>
+    <color name="color3">#FEEBC0</color>
+    <color name="color4">#B8DD7E</color>
+    <color name="color5">#559974</color>
+    <color name="color6">#61D3DB</color>
+    <color name="color7">#529CA4</color>
+    <color name="color8">#506DA4</color>
+
+    <string-array name="color_list">
+        <item>@color/color1</item>
+        <item>@color/color3</item>
+        <item>@color/color4</item>
+        <item>@color/color5</item>
+        <item>@color/color6</item>
+        <item>@color/color7</item>
+        <item>@color/color8</item>
+        <item>@color/color2</item>
+    </string-array>
+
 </resources>
