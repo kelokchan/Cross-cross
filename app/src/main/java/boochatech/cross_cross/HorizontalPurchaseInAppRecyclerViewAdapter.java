@@ -105,22 +105,24 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
                     public void onClick(View v) {
                         HashMap<String, Object> paymentDetails = new HashMap<>();
                         paymentDetails.put(MOLPayActivity.mp_amount, "1.10");
-                        paymentDetails.put(MOLPayActivity.mp_username, "api_MOLWallet_Dev3");
-                        paymentDetails.put(MOLPayActivity.mp_password, "api_walletdev3'");
-                        paymentDetails.put(MOLPayActivity.mp_merchant_ID, "MOLWallet_Dev3");
-                        paymentDetails.put(MOLPayActivity.mp_app_name, "ahkl03");
-                        paymentDetails.put(MOLPayActivity.mp_order_ID, "1234");
+                        paymentDetails.put(MOLPayActivity.mp_username, "api_MOLWallet_Dev1");
+                        paymentDetails.put(MOLPayActivity.mp_password, "api_walletdev1");
+                        paymentDetails.put(MOLPayActivity.mp_merchant_ID, "MOLWallet_Dev1");
+                        paymentDetails.put(MOLPayActivity.mp_app_name, "ahkl01");
+                        paymentDetails.put(MOLPayActivity.mp_order_ID, "46757");
                         paymentDetails.put(MOLPayActivity.mp_currency, "MYR");
                         paymentDetails.put(MOLPayActivity.mp_country, "MY");
-                        paymentDetails.put(MOLPayActivity.mp_verification_key, "526cf83bd534609be4ba7df469f43aa1");
+                        paymentDetails.put(MOLPayActivity.mp_verification_key, "c6c5cdaabf772a366e1b5ba8a512afac");
                         paymentDetails.put(MOLPayActivity.mp_bill_description, "buy buy");
-                        paymentDetails.put(MOLPayActivity.mp_bill_name, "asdas");
+                        paymentDetails.put(MOLPayActivity.mp_bill_name, "test molpay demo");
                         paymentDetails.put(MOLPayActivity.mp_bill_email, "ahkl@gmail.com");
                         paymentDetails.put(MOLPayActivity.mp_bill_mobile, "60163218880");
                         paymentDetails.put(MOLPayActivity.mp_channel_editing, false);
                         paymentDetails.put(MOLPayActivity.mp_editing_enabled, false);
                         paymentDetails.put(MOLPayActivity.mp_request_type, "");
-                        paymentDetails.put("domain_code", "1");
+                        paymentDetails.put(MOLPayActivity.mp_channel, "");
+                        paymentDetails.put(MOLPayActivity.mp_transaction_id, "");
+                        paymentDetails.put("domain_mode", "1");
 
                         Intent intent = new Intent(mContext, MOLPayActivity.class);
                         intent.putExtra(MOLPayActivity.MOLPayPaymentDetails, paymentDetails);
