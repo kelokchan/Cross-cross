@@ -2,6 +2,7 @@ package boochatech.cross_cross;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
 
         public TextView actionText;
         public ImageView actionIcon;
-
+        public CardView actionCardView;
         public ViewHolder(View view) {
             super(view);
             imageview_productImg = (ImageView) view.findViewById(R.id.purchase_image);
@@ -55,6 +56,7 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
 
             actionText = (TextView) view.findViewById(R.id.action_text);
             actionIcon = (ImageView) view.findViewById(R.id.action_image);
+            actionCardView = (CardView) view.findViewById(R.id.action_card_view);
         }
     }
 
@@ -73,6 +75,17 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
         if (isAction) {
             holder.actionIcon.setBackgroundResource(products.get(position).getImage());
             holder.actionText.setText(products.get(position).getName());
+
+            holder.actionCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch(position){
+                        case 2:
+                            mContext.startActivity(new Intent("com.waze"));
+                            break;
+                    }
+                }
+            });
         } else {
             if (!products.get(position).getDescription().equals("")) {
                 holder.imageview_productImg.setBackgroundResource(products.get(position).getImage());
