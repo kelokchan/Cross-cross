@@ -49,40 +49,42 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
             imageview_productImg = (ImageView) view.findViewById(R.id.purchase_image);
             textview_productName = (TextView) view.findViewById(R.id.purchase_name);
             textview_description = (TextView) view.findViewById(R.id.purchase_description);
-            ratingBar = (RatingBar)view.findViewById(R.id.purchase_rating);
-            buyButton = (Button)view.findViewById(R.id.purchase_buy_now);
-            rl = (RelativeLayout)view.findViewById(R.id.purchase_rl);
+            ratingBar = (RatingBar) view.findViewById(R.id.purchase_rating);
+            buyButton = (Button) view.findViewById(R.id.purchase_buy_now);
+            rl = (RelativeLayout) view.findViewById(R.id.purchase_rl);
 
-            actionText = (TextView)view.findViewById(R.id.action_text);
-            actionIcon = (ImageView)view.findViewById(R.id.action_image);
+            actionText = (TextView) view.findViewById(R.id.action_text);
+            actionIcon = (ImageView) view.findViewById(R.id.action_image);
         }
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(isAction)
+        if (isAction)
             return new ViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_suggest_action, parent, false));
         else
-        return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_card_in_app_purchase, parent, false));
+            return new ViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_card_in_app_purchase, parent, false));
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        if(isAction){
-            holder.actionIcon.setBackgroundResource(products.get(0).getImage());
-            holder.actionText.setText(products.get(0).getName());
-        }else{
-            if(holder.textview_description.equals("")){
+        if (isAction) {
+            holder.actionIcon.setBackgroundResource(products.get(position).getImage());
+            holder.actionText.setText(products.get(position).getName());
+        } else {
+            if (!products.get(position).getDescription().equals("")) {
                 holder.imageview_productImg.setBackgroundResource(products.get(position).getImage());
-                if(!holder.textview_productName.equals(""))holder.textview_productName.setText(products.get(position).getName());
-                else{
+                if (!holder.textview_productName.equals(""))
+                    holder.textview_productName.setText(products.get(position).getName());
+                else {
                     holder.textview_productName.setVisibility(View.GONE);
                     holder.buyButton.setVisibility(View.GONE);
                 }
                 holder.textview_description.setText(products.get(position).getDescription());
-                if(products.get(position).getRating()!=-1)holder.ratingBar.setRating((float)products.get(position).getRating());
+                if (products.get(position).getRating() != -1)
+                    holder.ratingBar.setRating((float) products.get(position).getRating());
                 else holder.ratingBar.setVisibility(View.GONE);
                 holder.buyButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,10 +110,10 @@ public class HorizontalPurchaseInAppRecyclerViewAdapter extends RecyclerView.Ada
 
                         Intent intent = new Intent(mContext, MOLPayActivity.class);
                         intent.putExtra(MOLPayActivity.MOLPayPaymentDetails, paymentDetails);
-                        ((MainActivity)mContext).startActivityForResult(intent, MOLPayActivity.MOLPayXDK);
+                        ((MainActivity) mContext).startActivityForResult(intent, MOLPayActivity.MOLPayXDK);
                     }
                 });
-            }else{
+            } else {
                 holder.imageview_productImg.setBackgroundResource(products.get(position).getImage());
                 holder.rl.setVisibility(View.GONE);
             }

@@ -72,7 +72,7 @@ public class ToDoListSection extends StatelessSection {
         itemHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (name.toLowerCase().startsWith("mov") || name.toLowerCase().startsWith("flow")) {
+                if (name.toLowerCase().startsWith("mov") || name.toLowerCase().startsWith("flow") ||  name.toLowerCase().startsWith("send") ) {
                     if (itemHolder.recyclerView.getVisibility() == View.VISIBLE) {
                         itemHolder.recyclerView.setVisibility(View.GONE);
                     } else {
@@ -145,7 +145,7 @@ public class ToDoListSection extends StatelessSection {
                 suggestions.add(new Product("Call a Grab to destination", -1, "", -1, R.drawable.grabcar, -1));
                 suggestions.add(new Product("Launch Waze", -1, "", -1, R.drawable.waze, -1));
                 suggestions.add(new Product("Online check-in", -1, "", -1,R.drawable.airasia, -1));
-
+                return suggestions;
             default:
                 suggestions.add(new Product("X-men Apocalypse", 3, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_xmen, R.drawable.movie_xmen));
                 suggestions.add(new Product("Me Before You", 4, String.format("%1$s - MYR%2$s", "Regular", 12), 12, R.drawable.movie_mebeforeu, R.drawable.movie_mebeforeu));
