@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivity(new Intent(MainActivity.this, JustDoItActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
