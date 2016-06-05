@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity
     ToDoListSection tenJuneSection;
 
     List<Product> todayList;
+    List<Product> tomorrowList;
+    List<Product> JunethList;
+    List<Product> JuneList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +48,22 @@ public class MainActivity extends AppCompatActivity
         sectionAdapter = new SwipeableRecyclerViewAdapter();
 
 
-        List<Product> todayList = new ArrayList<>();
+        todayList = new ArrayList<>();
         todayList.add(new Product("Flower for Babe", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.groceries));
         todayList.add(new Product("Gym with Desmond", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.gym));
-        List<Product> tomorrowList = new ArrayList<>();
 
+        tomorrowList = new ArrayList<>();
         tomorrowList.add(new Product("Send Mom to Airport", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.flight));
         tomorrowList.add(new Product("Assignment Due", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.appointment));
 
-        List<Product> JunethList = new ArrayList<>();
+        JunethList  = new ArrayList<>();
         JunethList.add(new Product("Badminton with T2-SE", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.exercise));
         JunethList.add(new Product("Buy bus ticket", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.ticket));
         JunethList.add(new Product("Appointment with Miss Hema", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.appointment));
 
-        List<Product> JuneList = new ArrayList<>();
+        JuneList = new ArrayList<>();
         JuneList.add(new Product("Dinner with Kelok", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.restaurant));
         JuneList.add(new Product("Body Checking", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, R.drawable.health));
-        todayList = new ArrayList<>();
-        todayList.add(new Product("Flower for Babe", 5.0, "at Pretty Petals", 22.00, R.drawable.flower1, 0));
 
         // Instantiate section with tags
         todaySection = new ToDoListSection(this, ToDoListSection.TODAY, "Today", todayList);
@@ -140,10 +141,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 1){
-            if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
-                todayList.add(0, new Product(result, 5.0, "movie", 22.00, R.drawable.movie_xmen, 0));
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("result");
+                todayList.add(0, new Product(result, 5.0, "movie", 22.00, R.drawable.movie_xmen, R.drawable.ticket));
                 sectionAdapter.notifyDataSetChanged();
             }
         }

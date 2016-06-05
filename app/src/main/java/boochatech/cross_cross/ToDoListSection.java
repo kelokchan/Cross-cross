@@ -23,6 +23,7 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 public class ToDoListSection extends StatelessSection {
     private List<Product> taskList;
     Context mContext;
+    int[] colors;
 
     public String header;
     final static int TODAY = 0;
@@ -53,23 +54,27 @@ public class ToDoListSection extends StatelessSection {
     }
 
     @Override
-    public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindItemViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyItemViewHolder itemHolder = (MyItemViewHolder) holder;
 
+        final String name = taskList.get(position).getName();
         // bind your view here
-        itemHolder.tvItem.setText(taskList.get(position).getName());
+        itemHolder.tvItem.setText(name);
         itemHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(itemHolder.recyclerView.getVisibility() == View.VISIBLE) {
-                    itemHolder.recyclerView.setVisibility(View.GONE);
-                }else{
-                    itemHolder.recyclerView.setVisibility(View.VISIBLE);
+                if (name.toLowerCase().startsWith("mov") || name.toLowerCase().startsWith("flow")) {
+                    if (itemHolder.recyclerView.getVisibility() == View.VISIBLE) {
+                        itemHolder.recyclerView.setVisibility(View.GONE);
+                    } else {
+                        itemHolder.recyclerView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
         itemHolder.cardImage.setImageResource(taskList.get(position).getShopLogo());
-        itemHolder.colorBar.setBackgroundColor(mContext.getResources().getColor(R.color.color5));
+        colors = mContext.getResources().getIntArray(R.array.color_list);
+        itemHolder.colorBar.setBackgroundColor(colors[position]);
 
     }
 
